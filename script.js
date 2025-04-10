@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerDisplay = document.getElementById('timer');
     const startBtn = document.getElementById('startBtn');
     const resetBtn = document.getElementById('resetBtn');
+    const addMinuteBtn = document.getElementById('addMinuteBtn');
+    const subtractMinuteBtn = document.getElementById('subtractMinuteBtn');
     
-    // Initial time: 15 minutes in seconds
-    let timeLeft = 1 * 60;
+    // Initial time: 30 minutes in seconds
+    let timeLeft = 30 * 60;
     let timerInterval;
     let isRunning = false;
     
@@ -59,16 +61,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
         }
     });
-    
-    // Reset timer function
+      // Reset timer function
     function resetTimer() {
         clearInterval(timerInterval);
-        timeLeft = 1 * 60;
+        timeLeft = 30 * 60;
         updateDisplay();
         isRunning = false;
         startBtn.textContent = "Start";
         document.body.classList.remove('time-up');
     }
+    
+    // Add a minute to the timer
+    addMinuteBtn.addEventListener('click', () => {
+        timeLeft += 60; // Add 60 seconds (1 minute)
+        updateDisplay();
+    });
+    
+    // Subtract a minute from the timer
+    subtractMinuteBtn.addEventListener('click', () => {
+        if (timeLeft > 60) {
+            timeLeft -= 60; // Subtract 60 seconds (1 minute)
+        } else {
+            timeLeft = 0; // Don't go below zero
+        }
+        updateDisplay();
+    });
     
     // Reset button event
     resetBtn.addEventListener('click', resetTimer);
