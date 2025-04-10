@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset timer function
     function resetTimer() {
         clearInterval(timerInterval);
-        timeLeft = 15 * 60;
+        timeLeft = 1 * 60;
         updateDisplay();
         isRunning = false;
         startBtn.textContent = "Start";
