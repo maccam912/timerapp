@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('resetBtn');
     
     // Initial time: 15 minutes in seconds
-    let timeLeft = 15 * 60;
+    let timeLeft = 1 * 60;
     let timerInterval;
     let isRunning = false;
     
