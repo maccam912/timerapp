@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>30 Minute Timer</title>    <link rel="stylesheet" href="styles.css?v=1.0.0">
 </head>
 <body>    <div class="container">
-        <h1>30 Minute Timer</h1>
-        <div class="timer" id="timer">30:00</div>
-        <div class="controls">
-            <button id="startBtn">Start</button>
-            <button id="resetBtn">Reset</button>
+        <div class="timer-container">
+            <div class="timer" id="timer">30:00</div>
+            <div class="controls-wrapper">
+                <div class="controls">
+                    <button id="startBtn">Start</button>
+                    <button id="resetBtn">Reset</button>
+                </div>
+                <div class="time-controls">
+                    <button id="addMinuteBtn">+1 Minute</button>
+                    <button id="subtractMinuteBtn">-1 Minute</button>
+                </div>
+            </div>
         </div>
-        <div class="time-controls">
-            <button id="addMinuteBtn">+1 Minute</button>
-            <button id="subtractMinuteBtn">-1 Minute</button>
-        </div>    </div>
+    </div>
     <script src="script.js?v=1.0.0"></script>
 </body>
 </html>
