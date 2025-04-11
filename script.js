@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn.textContent = "Start";
     }
     
-    // Start/pause timer
-    startBtn.addEventListener('click', () => {
+    // Start/pause timer function
+    function toggleTimer() {
         if (isRunning) {
             // Pause timer
             clearInterval(timerInterval);
@@ -61,6 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     timerComplete();
                 }
             }, 1000);
+        }
+    }
+    
+    // Start/pause timer button event
+    startBtn.addEventListener('click', toggleTimer);
+    
+    // Spacebar key event to toggle play/pause
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Space') {
+            // Prevent default spacebar behavior (like page scrolling)
+            event.preventDefault();
+            toggleTimer();
         }
     });
     
