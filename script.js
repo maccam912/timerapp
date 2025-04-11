@@ -4,11 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('resetBtn');
     const addMinuteBtn = document.getElementById('addMinuteBtn');
     const subtractMinuteBtn = document.getElementById('subtractMinuteBtn');
+    const buttonContainer = document.querySelector('.button-container');
     
     // Initial time: 30 minutes in seconds
     let timeLeft = 30 * 60;
     let timerInterval;
     let isRunning = false;
+    let inactivityTimer;
     
     // Format seconds into MM:SS
     function formatTime(seconds) {
@@ -61,7 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
         }
     });
-      // Reset timer function
+    
+    // Reset timer function
     function resetTimer() {
         clearInterval(timerInterval);
         timeLeft = 30 * 60;
@@ -89,6 +92,24 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Reset button event
     resetBtn.addEventListener('click', resetTimer);
+    
+    // Function to handle inactivity and fading
+    function startInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        buttonContainer.classList.remove('fade');
+        
+        inactivityTimer = setTimeout(() => {
+            buttonContainer.classList.add('fade');
+        }, 5000); // 5 seconds of inactivity
+    }
+    
+    // Add event listeners for activity detection
+    document.addEventListener('mousemove', startInactivityTimer);
+    document.addEventListener('click', startInactivityTimer);
+    document.addEventListener('keydown', startInactivityTimer);
+    
+    // Start the inactivity timer when the page loads
+    startInactivityTimer();
     
     // Initialize timer display
     updateDisplay();
