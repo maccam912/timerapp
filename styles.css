@@ -96,3 +96,22 @@ button:hover {
     background-color: #ff3333;
     color: white;
 }
+
+.audio-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.audio-controls.fade {
+    opacity: 0;
+}
+
+#volumeSlider {
+    width: 150px;
+    margin: 0 10px;
+}

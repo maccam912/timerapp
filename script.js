@@ -4,13 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('resetBtn');
     const addMinuteBtn = document.getElementById('addMinuteBtn');
     const subtractMinuteBtn = document.getElementById('subtractMinuteBtn');
+    const musicBtn = document.getElementById('musicBtn');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const volumeSlider = document.getElementById('volumeSlider');
     const buttonContainer = document.querySelector('.button-container');
+    const audioControls = document.querySelector('.audio-controls');
     
     // Initial time: 30 minutes in seconds
     let timeLeft = 30 * 60;
     let timerInterval;
     let isRunning = false;
     let inactivityTimer;
+    let isMusicPlaying = false;
     
     // Format seconds into MM:SS
     function formatTime(seconds) {
@@ -104,14 +109,39 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Reset button event
     resetBtn.addEventListener('click', resetTimer);
+      // Function to toggle background music
+    function toggleMusic() {
+        if (isMusicPlaying) {
+            backgroundMusic.pause();
+            musicBtn.textContent = "🔈 Music";
+            isMusicPlaying = false;
+        } else {
+            backgroundMusic.play();
+            musicBtn.textContent = "🔊 Music";
+            isMusicPlaying = true;
+        }
+    }
+    
+    // Music button event listener
+    musicBtn.addEventListener('click', toggleMusic);
+    
+    // Volume slider event listener
+    volumeSlider.addEventListener('input', () => {
+        backgroundMusic.volume = volumeSlider.value;
+    });
+    
+    // Set initial volume
+    backgroundMusic.volume = volumeSlider.value;
     
     // Function to handle inactivity and fading
     function startInactivityTimer() {
         clearTimeout(inactivityTimer);
         buttonContainer.classList.remove('fade');
+        audioControls.classList.remove('fade');
         
         inactivityTimer = setTimeout(() => {
             buttonContainer.classList.add('fade');
+            audioControls.classList.add('fade');
         }, 5000); // 5 seconds of inactivity
     }
     
